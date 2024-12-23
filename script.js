@@ -12,7 +12,7 @@ var arr = [
     {
         dp:'https://images.unsplash.com/photo-1734533992947-44970e6e5010?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw2MHx8fGVufDB8fHx8fA%3D%3D',
         story:'https://images.unsplash.com/photo-1733126916745-ae6453f1fe4e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw2NXx8fGVufDB8fHx8fA%3D%3D',
-        username:'stylish by'
+        username:'stylish boy'
     },
     {
         dp:'https://images.unsplash.com/photo-1730941343980-5d81ce7c768b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8',
@@ -35,38 +35,29 @@ var arr = [
 var sum = ''
 
 arr.forEach(function(elem,idx){
-    sum = sum + `<div class="story">
-    <img id=${idx} src="${elem.dp}" alt="">
+    
+    sum = sum + `<div class="status" id=${idx}>
+    <img src=${elem.dp} alt="">
+    <div class="status-in">
+        <h4>${elem.username}</h4>
+        <h6>5 mins ago</h6>
+    </div>
 </div>`
 })
 
-var storiyan = document.querySelector('#storiyan')
+var allStatus = document.querySelector('#allStatus')
 var full = document.querySelector('#full')
-var fullUser = document.querySelector('#full h2')
 
-var growth = document.querySelector('#growth')
+allStatus.innerHTML = sum
 
-storiyan.innerHTML = sum
-
-
-storiyan.addEventListener('click',function(dets){
-    var grow = 0
-
+allStatus.addEventListener('click',function(dets){
     var gold = arr[dets.target.id]
 
-    var inter = setInterval(function(){
-        grow++
-
-        growth.style.width = grow+'%'
-    },30)
-    
     full.style.display = 'block'
     full.style.backgroundImage = `url(${gold.story})`
-    fullUser.innerHTML = gold.username
-
 
     setTimeout(function(){
-        full.style.display = 'none'
-        clearInterval(inter)
+    full.style.display = 'none'
+
     },3000)
 })
